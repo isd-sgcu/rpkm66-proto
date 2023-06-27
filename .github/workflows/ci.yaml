@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+      - dev
+  pull_request:
+    branches: 
+      - main
+      - beta
+      - dev
+jobs:
+  build-go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: creates output
+        run:  make
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        with:
+          destination-github-username: 'isd-sgcu'
+          destination-repository-name: 'rpkm66-go-proto'
+          user-email: isd.team.sgcu@gmail.com
+          target-branch: ${{ github.base_ref }}
+          create-target-branch-if-needed: true
