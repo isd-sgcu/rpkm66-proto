@@ -1,2 +1,3 @@
 all:
-	find . -name *.proto -exec protoc --go_out=. --go-grpc_out=. {} \;
+	mkdir dist
+	find . -name *.proto -exec protoc --go_out=dist --go-grpc_out=dist {} \;
