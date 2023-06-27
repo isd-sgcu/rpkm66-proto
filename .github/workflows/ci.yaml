@@ -6,16 +6,18 @@ on:
       - main
       - beta
       - dev
-  pull_request:
-    branches: 
-      - main
-      - beta
-      - dev
+
 jobs:
   build-go:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
       - name: Install Protoc
         uses: arduino/setup-protoc@v2
 
@@ -40,5 +42,5 @@ jobs:
           destination-github-username: 'isd-sgcu'
           destination-repository-name: 'rpkm66-go-proto'
           user-email: isd.team.sgcu@gmail.com
-          target-branch: ${{ github.base_ref }}
+          target-branch: ${{ steps.extract_branch.outputs.branch }}
           create-target-branch-if-needed: true
