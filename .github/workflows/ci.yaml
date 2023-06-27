@@ -39,6 +39,7 @@ jobs:
         env:
           SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         with:
+          source-directory: .
           destination-github-username: 'isd-sgcu'
           destination-repository-name: 'rpkm66-go-proto'
           user-email: isd.team.sgcu@gmail.com
