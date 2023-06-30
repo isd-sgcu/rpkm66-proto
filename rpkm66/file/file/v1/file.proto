@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package rpkm66.file.file.v1;
 
-option go_package = "rpkm66/file/file/v1";
+option go_package = "github.com/isd-sgcu/rpkm66-go-proto/rpkm66/file/file/v1";
 
 service FileService {
   rpc Upload(UploadRequest) returns (UploadResponse){}
