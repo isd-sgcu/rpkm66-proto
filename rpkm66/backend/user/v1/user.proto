@@ -4,7 +4,7 @@ option go_package = "rpkm66/backend/user/v1";
 
 import "rpkm66/backend/event/v1/event.proto";
 
-package user;
+package rpkm66.backend.user.v1;
 
 service UserService {
   rpc FindOne(FindOneUserRequest) returns (FindOneUserResponse){}
