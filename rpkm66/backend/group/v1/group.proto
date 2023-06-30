@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/isd-sgcu/rpkm66-go-proto/rpkm66/backend/group/v1";
+option go_package = "rpkm66/backend/group/v1";
 
 package rpkm66.backend.group.v1;
 
