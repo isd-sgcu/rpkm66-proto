@@ -33,13 +33,13 @@ jobs:
         run: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.3.0
 
       - name: Build
-        run:  make
+        run:  make go
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
           SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         with:
-          source-directory: dist
+          source-directory: go
           destination-github-username: 'isd-sgcu'
           destination-repository-name: 'rpkm66-go-proto'
           user-email: isd.team.sgcu@gmail.com
