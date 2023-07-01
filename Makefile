@@ -12,5 +12,5 @@ go:
 rust:
 	mkdir -p rust
 	-cd rust && cargo init --lib --name rpkm66-rust-proto && cargo add tonic prost
-	-cd scripts/rust && cargo build --release && cp target/release/rust ../..
-	-rust -s . -o rust/src
+	cd scripts/rust && cargo build --release && cp target/release/rust ../../rust-gen-cli
+	-./rust-gen-cli -s . -o rust/src
