@@ -65,6 +65,7 @@ fn main() {
         .build_transport(true)
         .include_file("lib.rs")
         .out_dir(output_dir)
+        .type_attribute(".", "#[derive(serde::Deserialize, serde::Serialize)]")
         .compile(&proto_files, &["."])
         .unwrap();
 }
