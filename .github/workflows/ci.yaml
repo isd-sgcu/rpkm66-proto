@@ -45,3 +45,34 @@ jobs:
           user-email: isd.team.sgcu@gmail.com
           target-branch: ${{ steps.extract_branch.outputs.branch }}
           create-target-branch-if-needed: true
+
+  build-rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v2
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: cargo
+
+      - name: Build
+        run:  make rust
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        with:
+          source-directory: rust
+          destination-github-username: 'isd-sgcu'
+          destination-repository-name: 'rpkm66-rust-proto'
+          user-email: isd.team.sgcu@gmail.com
+          target-branch: ${{ steps.extract_branch.outputs.branch }}
+          create-target-branch-if-needed: true
