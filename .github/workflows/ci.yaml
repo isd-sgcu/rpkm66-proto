@@ -37,7 +37,7 @@ jobs:
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          SSH_DEPLOY_KEY: ${{ secrets.GO_DEPLOY_KEY }}
         with:
           source-directory: go
           destination-github-username: 'isd-sgcu'
@@ -68,7 +68,7 @@ jobs:
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          SSH_DEPLOY_KEY: ${{ secrets.RUST_DEPLOY_KEY }}
         with:
           source-directory: rust
           destination-github-username: 'isd-sgcu'
