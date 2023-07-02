@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-option go_package = "rpkm66/backend/group/v1";
-
 package rpkm66.backend.group.v1;
 
 import "rpkm66/backend/baan/v1/baan.proto";
+
+option go_package = "rpkm66/backend/group/v1";
 
 service GroupService {
   rpc FindOne(FindOneGroupRequest) returns (FindOneGroupResponse) {}

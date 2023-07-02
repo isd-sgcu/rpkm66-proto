@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-option go_package = "rpkm66/backend/user/v1";
+package rpkm66.backend.user.v1;
 
 import "rpkm66/backend/event/v1/event.proto";
 
-package rpkm66.backend.user.v1;
+option go_package = "rpkm66/backend/user/v1";
 
 service UserService {
   rpc FindOne(FindOneUserRequest) returns (FindOneUserResponse){}

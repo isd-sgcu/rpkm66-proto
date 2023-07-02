@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "rpkm66/backend/event/v1";
-
 package rpkm66.backend.event.v1;
+
+option go_package = "rpkm66/backend/event/v1";
 
 service EventService {
   rpc FindAllEvent(FindAllEventRequest) returns (FindAllEventResponse){}
