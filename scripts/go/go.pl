@@ -1,23 +1,34 @@
 #!/usr/bin/perl
 
-my $all_proto_files = `find * -name *.proto -type f`;
+my $go_module = "github.com/isd-sgcu/rpkm66-go-proto";
+my $proto_package = "";
+
+my $source_dir = scalar(@ARGV) < 1 ? "*" : "${ARGV[0]}";
+my $all_proto_files = `find ${source_dir} -name *.proto -type f`;
+
+my $go_proto_package = $proto_package == "" ? "$go_module" : "$go_module/$proto_package";
+
 my @proto_files = split /\R/, $all_proto_files;
 my @mapped = map { 
-    (my $go_package = $_) =~ s/\/\w*\.proto//;
+    (my $remove_prefix = $_) =~ s/\Q$source_dir\///;
 
-    ("--go_opt=M$_=github.com/isd-sgcu/rpkm66-go-proto/$go_package", "--go-grpc_opt=M$_=github.com/isd-sgcu/rpkm66-go-proto/$go_package");
+    (my $go_package = $remove_prefix) =~ s/\/\w*\.proto//;
+
+    ("--go_opt=M$remove_prefix=$go_proto_package/$go_package", "--go-grpc_opt=M$remove_prefix=$go_proto_package/$go_package");
 } @proto_files;
+
+my $proto_path = $source_dir == "*" ? "." : $source_dir;
 
 my @cmd_prefix = (
     "protoc",
     "--go_out=go",
+    "--go_opt=module=$go_module",
     "--go-grpc_out=go",
-    "--go_opt=module=github.com/isd-sgcu/rpkm66-go-proto",
-    "--go-grpc_opt=module=github.com/isd-sgcu/rpkm66-go-proto",
-    "--proto_path=.",
+    "--go-grpc_opt=module=$go_module",
+    "--proto_path=$proto_path",
     @mapped
 );
 
 my $cmd = (join " ", @cmd_prefix) . " " . (join " ", @proto_files);
-print $cmd;
+# print $cmd;
 system $cmd;
