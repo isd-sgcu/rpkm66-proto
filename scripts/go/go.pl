@@ -17,7 +17,7 @@ my @mapped = map {
     ("--go_opt=M$remove_prefix=$go_proto_package/$go_package", "--go-grpc_opt=M$remove_prefix=$go_proto_package/$go_package");
 } @proto_files;
 
-my $proto_path = $source_dir == "*" ? "." : $source_dir;
+my $proto_path = $source_dir eq "*" ? "." : $source_dir;
 
 my @cmd_prefix = (
     "protoc",
