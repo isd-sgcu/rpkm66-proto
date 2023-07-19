@@ -93,7 +93,7 @@ message UpdateUserRequest{
   string emerPhone = 13;
   string emerRelation = 14;
   bool wantBottle = 15;
-  string personaliryGame=16;
+  string personalityGame=16;
 }
 
 message UpdateUserResponse{
