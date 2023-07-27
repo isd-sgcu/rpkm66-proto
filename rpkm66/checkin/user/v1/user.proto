@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package rpkm66.checkin.user.v1;
+
+import "rpkm66/checkin/event/v1/event.proto";
+
+option go_package = "rpkm66/checkin/user/v1";
+
+service UserService {
+  rpc AddEvent(AddEventRequest) returns (AddEventResponse) {}
+}
+
+/*
+ AddEvent
+*/
+message AddEventRequest {
+  string user_id = 1;
+  string token = 2;
+}
+
+message AddEventResponse {
+  rpkm66.checkin.event.v1.UserEvent event = 1;
+}

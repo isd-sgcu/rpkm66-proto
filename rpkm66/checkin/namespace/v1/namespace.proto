@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package rpkm66.checkin.namespace.v1;
+
+option go_package = "rpkm66/checkin/namespace/v1";
+
+message Namespace {
+  string id = 1;
+}
+
+service NamespaceService {
+  rpc GetAllNamespaces(GetAllNamespacesRequest) returns (GetAllNamespacesResponse) {}
+}
+
+/*
+  GetAllNamespaces
+*/
+message GetAllNamespacesRequest {}
+
+message GetAllNamespacesResponse {
+  repeated Namespace namespaces = 1;
+}

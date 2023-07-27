@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package rpkm66.checkin.staff.v1;
+
+option go_package = "rpkm66/checkin/staff/v1";
+
+service StaffService {
+  rpc AddEventToUser(AddEventToUserRequest) returns (AddEventToUserResponse) {}
+  rpc GenerateSignInToken(GenerateSignInTokenRequest) returns (GenerateSignInTokenResponse) {}
+}
+
+/*
+  AddEventToUser
+*/
+message AddEventToUserRequest {
+  string staff_user_id = 1;
+  string user_id = 2;
+  string event_id = 3;
+}
+
+message AddEventToUserResponse {
+  bool success = 1;
+}
+
+/*
+ GenerateSignInToken
+*/
+message GenerateSignInTokenRequest {
+  string staff_user_id = 1;
+  string event_id = 2;
+  int64  end_at = 3;
+}
+
+message GenerateSignInTokenResponse {
+  string token = 1;
+}

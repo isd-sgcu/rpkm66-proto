@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package rpkm66.checkin.event.v1;
+
+option go_package = "rpkm66/checkin/event/v1";
+
+message Event {
+  string event_id = 1;
+  string event_name = 2;
+  string namespace_id = 3;
+  string additional_info = 4;
+}
+
+message UserEvent {
+  Event event = 1;
+  bool  is_taken = 2;
+}
+
+service EventService {
+  rpc GetAllEvents(GetAllEventsRequest) returns (GetAllEventsResponse) {}
+  rpc GetEventById(GetEventByEventIdRequest) returns (GetEventByEventIdResponse) {} 
+  rpc GetEventsByUserId(GetEventsByUserIdRequest) returns (GetEventsByUserIdResponse) {}
+  rpc GetEventsByNamespaceId(GetEventsByNamespaceRequestId) returns (GetEventsByNamespaceResponseId) {}
+}
+
+/*
+  GetAllEvents
+*/
+message GetAllEventsRequest {}
+
+message GetAllEventsResponse {
+  repeated Event events = 1;
+}
+
+/*
+  GetEventByEventId
+*/
+message GetEventByEventIdRequest {
+  string event_id = 1;
+}
+
+message GetEventByEventIdResponse {
+  Event event = 1;
+}
+
+/*
+  GetEventsByUserId
+*/
+message GetEventsByUserIdRequest {
+  string user_id = 1;
+}
+
+message GetEventsByUserIdResponse {
+  repeated UserEvent events = 1;
+}
+
+/*
+  GetEventsByNamespaceId
+*/
+message GetEventsByNamespaceRequestId {
+  string namespace_id = 1;
+}
+
+message GetEventsByNamespaceResponseId {
+  repeated Event events = 1;
+}
