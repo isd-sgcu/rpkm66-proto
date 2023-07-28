@@ -7,6 +7,7 @@ option go_package = "rpkm66/checkin/staff/v1";
 service StaffService {
   rpc AddEventToUser(AddEventToUserRequest) returns (AddEventToUserResponse) {}
   rpc GenerateSignInToken(GenerateSignInTokenRequest) returns (GenerateSignInTokenResponse) {}
+  rpc IsStaff(IsStaffRequest) returns (IsStaffResponse) {}
 }
 
 /*
@@ -33,4 +34,15 @@ message GenerateSignInTokenRequest {
 
 message GenerateSignInTokenResponse {
   string token = 1;
+}
+
+/*
+ IsStaff
+*/
+message IsStaffRequest {
+  string staff_id = 1;
+}
+
+message IsStaffResponse {
+  bool is_staff = 1;
 }
