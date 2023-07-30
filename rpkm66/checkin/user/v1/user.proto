@@ -8,6 +8,8 @@ option go_package = "rpkm66/checkin/user/v1";
 
 service UserService {
   rpc AddEvent(AddEventRequest) returns (AddEventResponse) {}
+  rpc GetAllUserEventsByNamespaceId(GetAllUserEventsByNamespaceIdRequest) returns (GetAllUserEventsByNamespaceIdResponse) {}
+  rpc GetUserEventByEventId(GetUserEventByEventIdRequest) returns (GetUserEventByEventIdResponse) {}
 }
 
 /*
@@ -20,4 +22,28 @@ message AddEventRequest {
 
 message AddEventResponse {
   rpkm66.checkin.event.v1.Event event = 1;
+}
+
+/*
+ * GetAllUserEventsByNamespace
+ */
+message GetAllUserEventsByNamespaceIdRequest {
+  string user_id = 1;
+  string namespace_id = 2;
+}
+
+message GetAllUserEventsByNamespaceIdResponse {
+  repeated rpkm66.checkin.event.v1.UserEvent event = 1;
+}
+
+/*
+ * GetUserEventByEventId
+ */ 
+message GetUserEventByEventIdRequest {
+  string user_id = 1;
+  string event_id = 2;
+}
+
+message GetUserEventByEventIdResponse {
+  rpkm66.checkin.event.v1.UserEvent user_event = 1;
 }

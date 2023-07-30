@@ -20,7 +20,9 @@ message UserEvent {
 service EventService {
   rpc GetAllEvents(GetAllEventsRequest) returns (GetAllEventsResponse) {}
   rpc GetEventByEventId(GetEventByEventIdRequest) returns (GetEventByEventIdResponse) {} 
-  rpc GetEventsByUserId(GetEventsByUserIdRequest) returns (GetEventsByUserIdResponse) {}
+  rpc GetEventsByUserId(GetEventsByUserIdRequest) returns (GetEventsByUserIdResponse) {
+    option deprecated = true;
+  }
   rpc GetEventsByNamespaceId(GetEventsByNamespaceIdRequest) returns (GetEventsByNamespaceIdResponse) {}
 }
 
