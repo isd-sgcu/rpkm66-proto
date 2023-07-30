@@ -19,5 +19,5 @@ message AddEventRequest {
 }
 
 message AddEventResponse {
-  rpkm66.checkin.event.v1.UserEvent event = 1;
+  rpkm66.checkin.event.v1.Event event = 1;
 }
