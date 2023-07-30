@@ -14,13 +14,14 @@ message Event {
 message UserEvent {
   Event event = 1;
   bool  is_taken = 2;
+  int64 taken_at = 3;
 }
 
 service EventService {
   rpc GetAllEvents(GetAllEventsRequest) returns (GetAllEventsResponse) {}
-  rpc GetEventById(GetEventByEventIdRequest) returns (GetEventByEventIdResponse) {} 
+  rpc GetEventByEventId(GetEventByEventIdRequest) returns (GetEventByEventIdResponse) {} 
   rpc GetEventsByUserId(GetEventsByUserIdRequest) returns (GetEventsByUserIdResponse) {}
-  rpc GetEventsByNamespaceId(GetEventsByNamespaceRequestId) returns (GetEventsByNamespaceResponseId) {}
+  rpc GetEventsByNamespaceId(GetEventsByNamespaceIdRequest) returns (GetEventsByNamespaceIdResponse) {}
 }
 
 /*
@@ -57,10 +58,10 @@ message GetEventsByUserIdResponse {
 /*
   GetEventsByNamespaceId
 */
-message GetEventsByNamespaceRequestId {
+message GetEventsByNamespaceIdRequest {
   string namespace_id = 1;
 }
 
-message GetEventsByNamespaceResponseId {
+message GetEventsByNamespaceIdResponse {
   repeated Event events = 1;
 }

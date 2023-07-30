@@ -29,7 +29,6 @@ message AddEventToUserResponse {
 message GenerateSignInTokenRequest {
   string staff_user_id = 1;
   string event_id = 2;
-  int64  end_at = 3;
 }
 
 message GenerateSignInTokenResponse {
