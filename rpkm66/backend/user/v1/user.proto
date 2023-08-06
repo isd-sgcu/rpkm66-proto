@@ -17,6 +17,7 @@ service UserService {
   rpc ConfirmEstamp(ConfirmEstampRequest) returns (ConfirmEstampResponse){}
   rpc GetUserEstamp(GetUserEstampRequest) returns (GetUserEstampResponse){}
   rpc UpdatePersonalityGame (UpdatePersonalityGameRequest) returns (UpdatePersonalityGameResponse){}
+  rpc IsStaff(IsStaffRequest) returns (IsStaffResponse){}
 }
 
 message User{
@@ -158,4 +159,13 @@ message UpdatePersonalityGameRequest{
 
 message UpdatePersonalityGameResponse{
   User user = 1;
+}
+
+// Is Staff
+message IsStaffRequest{
+  string staff_id = 1;
+}
+
+message IsStaffResponse{
+  bool is_staff = 1;
 }
